@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 
 import Menu from 'src/components/Menu';
 import Home from 'src/components/Home';
-// import Recipe from 'src/components/Recipe';
-// import Error from 'src/components/Error';
+import Recipe from 'src/components/Recipe';
+import Error from 'src/components/Error';
 
 import Loading from './Loading';
 
