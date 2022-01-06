@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import './style.scss';
 
@@ -6,20 +7,20 @@ const Menu = () => {
   const recipes = useSelector((state) => state.recipes.list);
   return (
     <nav className="menu">
-      <a
+      <NavLink
         className="menu-link menu-link--active"
-        href="/"
+        to="/"
       >
         Accueil
-      </a>
+      </NavLink>
       {recipes.map((recipe) => (
-        <a
+        <NavLink
           key={recipe.id}
           className="menu-link"
-          href={`/recipe/${recipe.slug}`}
+          to={`/recipe/${recipe.slug}`}
         >
           {recipe.title}
-        </a>
+        </NavLink>
       ))}
     </nav>
   );

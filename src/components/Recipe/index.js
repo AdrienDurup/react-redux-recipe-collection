@@ -1,5 +1,6 @@
 /* eslint-disable arrow-body-style */
 // == Import : npm
+import { useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -17,12 +18,13 @@ import Instructions from './Instructions';
 import './style.scss';
 
 // == Composant
-function Recipe() {
-  const recipe = useSelector((state) => findRecipe(state.recipes.list, 'crepes-raffinees'));
+function Recipe({ slug }) {
+  const recipe = useSelector((state) => findRecipe(state.recipes.list, slug));
 
   if (!recipe) {
     return <Navigate to="/error" replace={true} />;
   }
+
   return (
     <Page>
       <AppHeader />
