@@ -21,7 +21,7 @@ import './style.scss';
 function Recipe() {
   console.log("running");
   const { slug } = useParams();
-  console.log("params",slug);
+  console.log("params", slug);
   const recipe = useSelector((state) => findRecipe(state.recipes.list, slug));
 
   if (!recipe) {
