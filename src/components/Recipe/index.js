@@ -1,7 +1,7 @@
 /* eslint-disable arrow-body-style */
 // == Import : npm
 import { useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { findRecipe } from 'src/selectors/recipes';
@@ -18,7 +18,10 @@ import Instructions from './Instructions';
 import './style.scss';
 
 // == Composant
-function Recipe({ slug }) {
+function Recipe() {
+  console.log("running");
+  const { slug } = useParams();
+  console.log("params",slug);
   const recipe = useSelector((state) => findRecipe(state.recipes.list, slug));
 
   if (!recipe) {

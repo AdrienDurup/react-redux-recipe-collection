@@ -45,8 +45,8 @@ function App(props) {
             <Routes>
               <Route path="/" element={<Home />} />
               {
-                recipes.map(({ slug, id }) => (
-                  <Route key={id} path={`/recipe/${slug}`} element={<Recipe slug={slug} />} />
+                recipes.map(({ id }) => (
+                  <Route key={id} path="/recipe/:slug" element={<Recipe />} />
                 ))
               }
               <Route path="*" element={<Error />} />
