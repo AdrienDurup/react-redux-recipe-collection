@@ -22,7 +22,7 @@ import './style.scss';
 
 function App(props) {
   const { loading } = useSelector((state) => (state.recipes));
-  const { recipes } = useSelector((state) => state);
+  const recipes = useSelector((state) => state.recipes.list);
   console.log(loading, recipes.list);
   const dispatch = useDispatch();
   /* we get all recipies at start */

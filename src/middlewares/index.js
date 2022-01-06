@@ -14,12 +14,13 @@ const recipesMW = (store) => (next) => async (action) => {
       console.log("get ?");
       store.dispatch(actionSetPropsLoading(true));
       try {
-        res = await axios.get('https://api.spoonacular.com/recipes/complexSearch&apiKey=acdcdf6f79654ee2b6e8b7a2ab2c815c');
+        // res = await axios.get('https://api.spoonacular.com/recipes/complexSearch&apiKey=acdcdf6f79654ee2b6e8b7a2ab2c815c');
+        res = await axios.get('http://localhost:3001/recipes');
         const newAction = {
           ...action,
           payload: res.data,
         };
-        console.log("GET DATA",newAction);
+        console.log("GET DATA", newAction);
         next(newAction);
       }
       catch (e) {
@@ -32,4 +33,4 @@ const recipesMW = (store) => (next) => async (action) => {
   }
 };
 
-export default  [recipesMW ];
+export default [recipesMW];
