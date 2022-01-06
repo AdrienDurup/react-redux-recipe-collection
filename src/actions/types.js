@@ -5,3 +5,7 @@ export const recipesT = {
 export const appT = {
   PROP_IS_LOADING: 'orecipe/app/prop/is-loading/set',
 };
+
+export const settingsT = {
+  TOGGLE_DARK_MODE: 'orecipe/app/darkmode/toggle',
+};

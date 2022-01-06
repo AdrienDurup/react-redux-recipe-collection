@@ -29,6 +29,7 @@ const recipesMW = (store) => (next) => async (action) => {
       break;
 
     default:
+      next(action);
       break;
   }
 };

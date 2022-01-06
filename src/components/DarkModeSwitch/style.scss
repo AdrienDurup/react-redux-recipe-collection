@@ -1,0 +1,42 @@
+.switch {
+  appearance: unset;
+  margin-left: 24px;
+  width: 2rem;
+  height: 1rem;
+  border-radius: .5rem;
+  background-color: black;
+  border: solid 2px white;
+
+  transition: 200ms ease-in-out;
+
+  &:checked {
+    border-color: black;
+     background-color: white;
+    transition: 200ms ease-in-out;
+  }
+}
+
+.switch__label {
+  display: flex;
+  align-items: center;
+  font-size: .8em;
+  color: white;
+}
+
+/* global dark mode definition */
+body.--dark-mode {
+  & .page {
+    background-color: black;
+
+    & h2,
+    & p,
+    & .ingredient,
+    & .step {
+      color: white;
+    }
+
+    & .steps {
+      background-color: rgb(36, 36, 36);
+    }
+  }
+}
