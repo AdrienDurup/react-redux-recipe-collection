@@ -22,10 +22,13 @@ const DarkModeSwitch = () => {
     else document.body.classList.remove('--dark-mode');
   }, [isDark]);
   return (
-    <label htmlFor="dark-mode" className="switch__label">
-      <input type="checkbox" className="switch" value={isDark} name="dark-mode" onChange={toggleDarkMode} />
-      {!isDark?'Dark Mode':'Light Mode'}
-    </label>
+    <div className="switch__wrapper">
+      <label htmlFor="dark-mode" className="switch__label">
+        <input type="checkbox" className="switch" value={isDark} name="dark-mode" onChange={toggleDarkMode} />
+        <span className="switch__handle" />
+      </label>
+      <span className="switch__label__tag">{isDark ? 'Dark Mode' : 'Light Mode'}</span>
+    </div>
   );
 };
 

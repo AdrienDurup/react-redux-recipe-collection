@@ -1,38 +1,111 @@
-.switch {
-  appearance: unset;
+.switch__wrapper {
+  display: flex;
+  align-items: center;
   margin-left: 24px;
-  width: 2rem;
-  height: 1rem;
-  border-radius: .5rem;
-  background-color: black;
-  border: solid 2px white;
-
-  transition: 200ms ease-in-out;
-
-  &:checked {
-    border-color: black;
-     background-color: white;
-    transition: 200ms ease-in-out;
-  }
 }
 
 .switch__label {
-  display: flex;
-  align-items: center;
+  $base-size: 1rem;
+  $base-size-mini: $base-size / 2;
+  $light:black;
+  $dark:white;
+  appearance: unset;
+  margin: 0;
+  position: relative;
+  box-sizing: content-box;
+  width: $base-size * 2;
+  height: $base-size;
+  border-radius: $base-size;
+
+  & .switch {
+    box-sizing: content-box;
+    appearance: unset;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: inherit;
+    height: inherit;
+    background-color: transparent;
+    border-radius: $base-size;
+    transition: 200ms ease-in-out;
+
+    /* ~ targets sibblings placed after element : a~b targets "b" elements if placed after "a" elements 
+    + does the same but sibblings must directly follow each other
+    */
+    /* hover on checkbox : change sibbling pseudo element with new background */
+    &:hover~.switch__handle::after,
+    /* same when checked */
+    &:checked:hover~.switch__handle::after {
+      background-color: #209cee;
+      border-color: #209cee;
+      transition-duration: 50ms;
+    }
+
+    &~.switch__handle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: inherit;
+      height: inherit;
+      box-sizing: border-box;
+      background-color:$dark;
+      border: solid 1px$light;
+      border-radius: $base-size;
+      transition: 200ms ease-in-out;
+
+      /* the circle */
+      &::after {
+        content: "";
+        position: absolute;
+        background-color:$light;
+        top: $base-size-mini * .40;
+        width: $base-size-mini;
+        height: $base-size-mini;
+        border-radius: $base-size-mini/2;
+        left: $base-size-mini/2;
+        right: unset;
+      }
+    }
+
+    &:checked {
+      &~.switch__handle {
+        background-color:$light;
+        border: solid 1px$dark;
+
+        &::after {
+          right: $base-size-mini/2;
+          left: unset;
+          background-color: gray;
+        }
+      }
+    }
+  }
+
+}
+
+.switch__label__tag {
   font-size: .8em;
-  color: white;
+  line-height: .8em;
+  margin-left: .5rem;
+  color:white;
 }
 
 /* global dark mode definition */
 body.--dark-mode {
   & .page {
-    background-color: black;
+    background-color:black;
 
     & h2,
     & p,
     & .ingredient,
     & .step {
-      color: white;
+      color:white;
     }
 
     & .steps {
