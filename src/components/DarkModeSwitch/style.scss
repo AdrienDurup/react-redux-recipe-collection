@@ -81,7 +81,7 @@
         &::after {
           right: $base-size-mini/2;
           left: unset;
-          background-color: gray;
+          background-color: $dark;
         }
       }
     }
