@@ -9,3 +9,10 @@ export const appT = {
 export const settingsT = {
   TOGGLE_DARK_MODE: 'orecipe/app/darkmode/toggle',
 };
+
+export const userT = {
+  AUTHENT: 'orecipe/app/authent/submit',
+  DISCONNECT: 'orecipe/app/authent/disconnect',
+  CONNECT: 'orecipe/app/authent/connect',
+  UPDATE_AUTHENT_FIELD: 'orecipe/app/authent/field/update',
+};
