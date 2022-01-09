@@ -14,5 +14,6 @@ export const userT = {
   AUTHENT: 'orecipe/app/authent/submit',
   DISCONNECT: 'orecipe/app/authent/disconnect',
   CONNECT: 'orecipe/app/authent/connect',
+  AUTHENT_FAILURE: 'orecipe/app/authent/fail',
   UPDATE_AUTHENT_FIELD: 'orecipe/app/authent/field/update',
 };
