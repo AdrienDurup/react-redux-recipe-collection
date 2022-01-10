@@ -6,7 +6,6 @@ export const initialState = {
   token: '',
   emailInput: '',
   passwordInput: '',
-  loggedMessage: '',
   pseudo: '',
 };
 
@@ -36,7 +35,6 @@ const reducer = (state = initialState, action = {}) => {
         isAuthent: true,
         token,
         pseudo,
-        loggedMessage: `Bienvenue ${pseudo}`,
         passwordInput: '',
       };
 
@@ -46,15 +44,7 @@ const reducer = (state = initialState, action = {}) => {
         isAuthent: false,
         token: '',
         pseudo: '',
-        loggedMessage: '',
       };
-
-    // case userT.AUTHENT_WITH_TOKEN:
-    //   console.log("reducer case userT.AUTHENT_WITH_TOKEN");
-    //   return {
-    //     ...state,
-    //     isAuthent: true,
-    //   };
 
     case userT.SET_USER_LOCAL:
       return {
