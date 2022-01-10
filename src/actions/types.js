@@ -19,4 +19,6 @@ export const userT = {
   UPDATE_AUTHENT_FIELD: 'orecipe/app/authent/field/update',
   SET_TKN_STORAGE_TRIGGER: 'orecipe/app/authent/token/should-store',
   SET_RECIPES: 'orecipe/app/recipes/favs/set',
+  CHECK_STORAGE: 'orecipe/app/user/localstorage/check',
+  SET_USER_LOCAL: 'orecipe/app/user/set-from-storage',
 };

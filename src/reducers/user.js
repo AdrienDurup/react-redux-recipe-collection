@@ -49,12 +49,18 @@ const reducer = (state = initialState, action = {}) => {
         loggedMessage: '',
       };
 
-    case userT.AUTHENT_WITH_TOKEN:
-      console.log("reducer case userT.AUTHENT_WITH_TOKEN");
+    // case userT.AUTHENT_WITH_TOKEN:
+    //   console.log("reducer case userT.AUTHENT_WITH_TOKEN");
+    //   return {
+    //     ...state,
+    //     isAuthent: true,
+    //   };
+
+    case userT.SET_USER_LOCAL:
       return {
         ...state,
+        ...action.payload,
         isAuthent: true,
-        pseudo: action.payload,
       };
 
     default:

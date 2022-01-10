@@ -31,3 +31,12 @@ export const actionSetListWithFavs = (payload) => ({
   type: userT.SET_RECIPES, /*  type:userT.SET_RECIPES, */
   payload,
 });
+
+export const actionCheckUserInStorage = () => ({
+  type: userT.CHECK_STORAGE,
+});
+
+export const actionSetFoundUser = (payload) => ({
+  type: userT.SET_USER_LOCAL,
+  payload, /* user= {token,pseudo} */
+});
