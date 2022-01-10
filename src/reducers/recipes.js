@@ -1,5 +1,4 @@
-import data from 'src/data';
-import { recipesT, appT } from '../actions/types';
+import { recipesT, appT, userT } from '../actions/types';
 
 export const initialState = {
   list: [],
@@ -20,6 +19,14 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         loading: action.payload,
+      };
+
+
+    case userT.SET_RECIPES:
+      return {
+        ...state,
+        list: action.payload,
+        loading: false,
       };
 
     default:

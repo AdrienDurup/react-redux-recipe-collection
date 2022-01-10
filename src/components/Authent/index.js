@@ -14,7 +14,10 @@ const Authent = () => {
   const isLogged = useSelector((state) => state.user.isAuthent);
   const emailInput = useSelector((state) => state.user.emailInput);
   const passwordInput = useSelector((state) => state.user.passwordInput);
-  const loggedMessage = useSelector((state) => state.user.loggedMessage);
+  const pseudo = useSelector((state) => state.user.pseudo);
+  const loggedMessage = `Bienvenue ${pseudo} !`;
+  // const loggedMessage = useSelector((state) => state.user.loggedMessage);
+
   const dispatch = useDispatch();
   const changeField = (value, field) => {
     dispatch(actionSetAuthentField(field, value));

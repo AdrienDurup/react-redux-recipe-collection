@@ -1,6 +1,7 @@
 const root = 'http://localhost:3001';
 const recipes = `${root}/recipes`;
 const login = `${root}/login`;
-const host = { root, recipes, login };
+const favs = `${root}/favorites`;
+const host = { root, recipes, login, favs };
 
 export default host;

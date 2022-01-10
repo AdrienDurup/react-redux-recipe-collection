@@ -17,19 +17,32 @@ import Loading from './Loading';
 import { actionGetRecipes } from '../../actions/recipes';
 
 import './style.scss';
+import { actionConnectWithToken } from '../../actions/user';
 
-
-
-function App(props) {
+function App() {
   const { loading } = useSelector((state) => (state.recipes));
   const recipes = useSelector((state) => state.recipes.list);
+  const {token} = JSON.parse(localStorage.getItem('token'));
   console.log(loading, recipes.list);
   const dispatch = useDispatch();
+
   /* we get all recipies at start */
+  // useEffect(() => {
+  //   console.log('useEffect');
+  //   dispatch(actionGetRecipes());
+  // }, []);
+
+  /* if token exists get fav, else display all recipes */
   useEffect(() => {
-    console.log("useEffect");
-    dispatch(actionGetRecipes());
+    if (token) {
+      console.log("test");
+      dispatch(actionConnectWithToken());
+    }
+    else {
+      dispatch(actionGetRecipes());
+    }
   }, []);
+
   /* if data is not fetched yet, return loader component */
   if (loading) {
     // if (props.loading) {
@@ -59,12 +72,12 @@ function App(props) {
   );
 }
 
-App.propTypes = {
-  loading: PropTypes.bool,
-};
+// App.propTypes = {
+//   loading: PropTypes.bool,
+// };
 
-App.defaultProps = {
-  loading: false,
-};
+// App.defaultProps = {
+//   loading: false,
+// };
 
 export default App;

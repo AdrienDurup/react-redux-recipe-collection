@@ -1,4 +1,5 @@
 import { userT } from '../actions/types';
+import { actionAuthentSubmit } from '../actions/user';
 
 export const initialState = {
   isAuthent: false,
@@ -19,7 +20,7 @@ const reducer = (state = initialState, action = {}) => {
       return stateCopy;
     // return {
     //   ...state,
-    //   isAuthent: true,
+    //   ...action.payload, /* {[field] : value} */
     // };
 
     case userT.AUTHENT_FAILURE:
@@ -46,6 +47,14 @@ const reducer = (state = initialState, action = {}) => {
         token: '',
         pseudo: '',
         loggedMessage: '',
+      };
+
+    case userT.AUTHENT_WITH_TOKEN:
+      console.log("reducer case userT.AUTHENT_WITH_TOKEN");
+      return {
+        ...state,
+        isAuthent: true,
+        pseudo: action.payload,
       };
 
     default:
