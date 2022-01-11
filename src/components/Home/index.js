@@ -5,14 +5,15 @@ import AppHeader from 'src/components/AppHeader';
 import Content from 'src/components/Content';
 
 const Home = () => {
-  const recipes = useSelector((state) => state.recipes.list);
+  const { list } = useSelector((state) => state.recipes);
+
   return (
     <Page>
       <AppHeader />
       <Content
         title="Les recettes oRecipes"
         text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, explicabo."
-        recipes={recipes}
+        recipes={list}
       />
     </Page>
   );

@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { actionGetRecipes } from '../actions/recipes';
 
 // types
 import { userT } from '../actions/types';
 
 //action
-import { actionAuthentFail, actionConnect, actionSetListWithFavs, actionSetFoundUser, actionConnectWithToken } from '../actions/user';
+import { actionAuthentFail, actionConnect } from '../actions/user';
+import { actionGetFavs, actionGetRecipes } from '../actions/recipes';
 
 // host
 import host from './host';
@@ -21,11 +21,7 @@ const authentMW = (store) => (next) => async (action) => {
       if (stored) {
         userPayload = JSON.parse(stored);
         console.log("userPayload", userPayload);
-        store.dispatch(actionSetFoundUser(userPayload));/* write found user in state */
-        store.dispatch(actionConnectWithToken()); /* get data from API via token in state */
-      }
-      else {
-       store.dispatch(actionGetRecipes());
+        store.dispatch(actionConnect(userPayload)); /* write user in state */
       }
 
       break;
@@ -49,30 +45,18 @@ const authentMW = (store) => (next) => async (action) => {
       }
       break;
 
-    case userT.AUTHENT_WITH_TOKEN:
-      try {
-        const { token } = store.getState().user;
-        console.log("myToken is", token);
-        res = await axios({ /* get favorites from API */
-          method: 'GET',
-          url: host.favs,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        /* update recipes list with favs only */
-        store.dispatch(actionSetListWithFavs(res.data.favorites));
-      }
-      catch (e) {
-        console.error(e);
-        // store.dispatch(actionAuthentFail());
-      }
-
+    case userT.CONNECT:
+      next(action); /* we let payload token/pseudo write en state */
+      /* we then update list with actionGetFavs which does not set loading state */
+      store.dispatch(actionGetFavs());
       break;
 
     case userT.DISCONNECT:
-      localStorage.removeItem('userInfo');
+      /* let action pass in order to reset user info */
       next(action);
+      localStorage.removeItem('userInfo');
+      /* we then can get all recipes (not possible if token exists) */
+      store.dispatch(actionGetRecipes());
       break;
 
     default:

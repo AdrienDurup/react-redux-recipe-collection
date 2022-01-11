@@ -12,7 +12,8 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         list: action.payload,
-        loading: false,
+        // loading: false,
+        loading: true,
       };
 
     case appT.PROP_IS_LOADING:
@@ -22,12 +23,19 @@ const reducer = (state = initialState, action = {}) => {
       };
 
 
-    case userT.SET_RECIPES:
+    case recipesT.SET_RECIPES:
       return {
         ...state,
         list: action.payload,
         loading: false,
       };
+
+    // case userT.DISCONNECT://No refresh ok
+    //   return {
+    //     ...state,
+    //     list: [],
+    //   };
+    //   break;
 
     default:
       return state;

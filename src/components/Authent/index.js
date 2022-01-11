@@ -11,12 +11,14 @@ import LoginForm from '../LoginForm';
 import { actionAuthentSubmit, actionDisconnect, actionSetAuthentField } from '../../actions/user';
 
 const Authent = () => {
-  const isLogged = useSelector((state) => state.user.isAuthent);
+  const token = useSelector((state) => state.user.token);
   const emailInput = useSelector((state) => state.user.emailInput);
   const passwordInput = useSelector((state) => state.user.passwordInput);
   const pseudo = useSelector((state) => state.user.pseudo);
   const loggedMessage = `Bienvenue ${pseudo} !`;
-  // const loggedMessage = useSelector((state) => state.user.loggedMessage);
+
+  /* We need to pass a boolean for isLogged, based on token which is string */
+  const isLogged = token ? true : false;
 
   const dispatch = useDispatch();
   const changeField = (value, field) => {

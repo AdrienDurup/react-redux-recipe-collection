@@ -4,6 +4,7 @@ export const actionAuthentSubmit = () => ({
   type: userT.AUTHENT,
 });
 
+/* copy user info in state, then fetch favs */
 export const actionConnect = (payload) => ({
   type: userT.CONNECT,
   payload,
@@ -13,30 +14,16 @@ export const actionDisconnect = () => ({
   type: userT.DISCONNECT,
 });
 
-export const actionSetAuthentField = (field, value) => ({/* payload is field name */
+export const actionSetAuthentField = (field, value) => ({ /* payload is field name */
   type: userT.UPDATE_AUTHENT_FIELD,
   payload: { field, value },
   // payload: { [field]: value }, /* dynamic key name */
 });
 
-export const actionConnectWithToken = () => ({
-  type: userT.AUTHENT_WITH_TOKEN,
-});
-
-export const actionAuthentFail = () => ({/* payload is field name */
+export const actionAuthentFail = () => ({
   type: userT.AUTHENT_FAILURE,
-});
-
-export const actionSetListWithFavs = (payload) => ({
-  type: userT.SET_RECIPES, /*  type:userT.SET_RECIPES, */
-  payload,
 });
 
 export const actionCheckUserInStorage = () => ({
   type: userT.CHECK_STORAGE,
-});
-
-export const actionSetFoundUser = (payload) => ({
-  type: userT.SET_USER_LOCAL,
-  payload, /* user= {token,pseudo} */
 });

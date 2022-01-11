@@ -29,28 +29,19 @@ const reducer = (state = initialState, action = {}) => {
       };
 
     case userT.CONNECT:
-      const { token, pseudo } = action.payload;
       return {
         ...state,
-        isAuthent: true,
-        token,
-        pseudo,
+        // isAuthent: true,
+        ...action.payload, /* { token, pseudo } = action.payload; */
         passwordInput: '',
       };
 
     case userT.DISCONNECT:
       return {
         ...state,
-        isAuthent: false,
+        // isAuthent: false,
         token: '',
         pseudo: '',
-      };
-
-    case userT.SET_USER_LOCAL:
-      return {
-        ...state,
-        ...action.payload,
-        isAuthent: true,
       };
 
     default:
