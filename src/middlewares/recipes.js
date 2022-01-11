@@ -1,22 +1,21 @@
 import axios from 'axios';
 
-//API route
+// API route
 import host from './host';
 
 // types
 import { recipesT } from '../actions/types';
 
-//action
+// action
 import { actionGetFavs, actionSetList } from '../actions/recipes';
 
 const recipesMW = (store) => (next) => async (action) => {
   let res;
   switch (action.type) {
-
     case recipesT.GET_RECIPES:
       /* we let action pass first to set loading status to true */
       next(action);
-      const token = store.getState().user.token;
+      const { token } = store.getState().user;
       /* if user token exists */
       if (token) {
         /* get user favorites */
@@ -30,7 +29,7 @@ const recipesMW = (store) => (next) => async (action) => {
             ...action,
             payload: res.data,
           };
-          console.log("GET DATA", newAction);
+          console.log('GET DATA', newAction);
           store.dispatch(actionSetList(res.data));/* always set loading to false */
         }
         catch (e) {
@@ -43,7 +42,7 @@ const recipesMW = (store) => (next) => async (action) => {
     case recipesT.GET_FAVS:
       try {
         const { token } = store.getState().user;
-        console.log("myToken is", token);
+        console.log('myToken is', token);
         res = await axios({ /* get favorites from API */
           method: 'GET',
           url: host.favs,

@@ -12,7 +12,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         list: action.payload,
-        // loading: false,
         loading: true,
       };
 
@@ -29,13 +28,6 @@ const reducer = (state = initialState, action = {}) => {
         list: action.payload,
         loading: false,
       };
-
-    // case userT.DISCONNECT://No refresh ok
-    //   return {
-    //     ...state,
-    //     list: [],
-    //   };
-    //   break;
 
     default:
       return state;
